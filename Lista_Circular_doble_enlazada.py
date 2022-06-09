@@ -29,12 +29,16 @@ class ListaCircularDoble:
         self.__unir_nodos()
             #! al colocar __ decimos que es un metodo privado
     def __unir_nodos(self):
-        self.inicio.anterior = self.final
-        self.final.siguiente = self.inicio
-    def recorre_inicio_a_fin(self):
+        if self.inicio != None:
+            self.inicio.anterior = self.final
+            self.final.siguiente = self.inicio
+    def recorre_inicio_a_fin(self, id):
         temporal = self.inicio
         while temporal:
-            print(temporal.id)
+            if temporal.id == id:
+                print("El número anterior es: ",temporal.anterior.id, "\n",
+                        "El número actual es: ", temporal.id,"\n", 
+                        "El número siguiente es:", temporal.siguiente.id)
             temporal = temporal.siguiente
             if temporal == self.inicio:
                 break
@@ -61,5 +65,17 @@ class ListaCircularDoble:
             print("Tu estructura esta vacia")
         elif self.inicio == self.final:
             self.inicio = self.final = None
+        else: 
+            self.final = self.final.anterior 
         self.__unir_nodos()
+
+    def buscar(self):
+        temporal = self.inicio
+        while temporal:
+            if temporal == temporal:
+                return True
+            else: 
+                temporal =temporal.siguiente
+                if temporal == self.inicio:
+                    return False
 
